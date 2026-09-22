@@ -107,6 +107,10 @@ def main():
             if finished:
                 motion = MOTION_SQUARE
                 target_index = 1
+        elif motion == MOTION_SQUARE:
+            x, y, target_index, finished = update_path(
+                x, y, SQUARE_POINTS, target_index
+            )
 
         draw_frame(character, x, y)
         delay(FRAME_DELAY)
