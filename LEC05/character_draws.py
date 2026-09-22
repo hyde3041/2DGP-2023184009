@@ -58,3 +58,9 @@ def handle_events():
         if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             return False
     return True
+
+
+def draw_frame(character, x, y):
+    clear_canvas()
+    character.draw(x, y)
+    update_canvas()
