@@ -104,6 +104,9 @@ def main():
 
         if motion == MOTION_CIRCLE:
             x, y, angle, finished = update_circle(angle)
+            if finished:
+                motion = MOTION_SQUARE
+                target_index = 1
 
         draw_frame(character, x, y)
         delay(FRAME_DELAY)
