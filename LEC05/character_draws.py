@@ -19,3 +19,11 @@ CIRCLE_CENTER_Y = 300
 CIRCLE_RADIUS = math.hypot(150, 150)
 CIRCLE_START_ANGLE = -3 * math.pi / 4
 CIRCLE_ANGLE_STEP = 0.03
+
+SQUARE_POINTS = (
+    (250, 150),
+    (550, 150),
+    (550, 450),
+    (250, 450),
+    (250, 150),
+)
