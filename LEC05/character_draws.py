@@ -96,4 +96,5 @@ def create_initial_state():
 def main():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     character = load_image('character.png')
+    x, y, motion, angle, target_index = create_initial_state()
     close_canvas()
