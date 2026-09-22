@@ -97,4 +97,9 @@ def main():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     character = load_image('character.png')
     x, y, motion, angle, target_index = create_initial_state()
+
+    running = True
+    while running:
+        running = handle_events()
+
     close_canvas()
