@@ -3,3 +3,6 @@
 import math
 
 from pico2d import *
+
+
+CANVAS_WIDTH = 800
