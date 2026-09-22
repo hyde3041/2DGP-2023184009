@@ -38,3 +38,14 @@ TRIANGLE_POINTS = (
 
 def distance_between(x, y, target_x, target_y):
     return math.hypot(target_x - x, target_y - y)
+
+
+def move_toward(x, y, target_x, target_y):
+    distance = distance_between(x, y, target_x, target_y)
+    if distance <= MOVE_SPEED:
+        return target_x, target_y, True
+
+    ratio = MOVE_SPEED / distance
+    x += (target_x - x) * ratio
+    y += (target_y - y) * ratio
+    return x, y, False
