@@ -64,3 +64,11 @@ def draw_frame(character, x, y):
     clear_canvas()
     character.draw(x, y)
     update_canvas()
+
+
+def update_circle(angle):
+    end_angle = CIRCLE_START_ANGLE + math.tau
+    angle = min(angle + CIRCLE_ANGLE_STEP, end_angle)
+    x = CIRCLE_CENTER_X + CIRCLE_RADIUS * math.cos(angle)
+    y = CIRCLE_CENTER_Y + CIRCLE_RADIUS * math.sin(angle)
+    return x, y, angle, angle >= end_angle
