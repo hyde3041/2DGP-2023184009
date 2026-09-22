@@ -102,5 +102,6 @@ def main():
     while running:
         running = handle_events()
         draw_frame(character, x, y)
+        delay(FRAME_DELAY)
 
     close_canvas()
