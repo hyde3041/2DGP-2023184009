@@ -101,5 +101,6 @@ def main():
     running = True
     while running:
         running = handle_events()
+        draw_frame(character, x, y)
 
     close_canvas()
