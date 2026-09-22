@@ -72,3 +72,17 @@ def update_circle(angle):
     x = CIRCLE_CENTER_X + CIRCLE_RADIUS * math.cos(angle)
     y = CIRCLE_CENTER_Y + CIRCLE_RADIUS * math.sin(angle)
     return x, y, angle, angle >= end_angle
+
+
+def update_path(x, y, points, target_index):
+    target_x, target_y = points[target_index]
+    x, y, reached = move_toward(x, y, target_x, target_y)
+    finished = False
+
+    if reached:
+        target_index += 1
+        if target_index == len(points):
+            target_index = 1
+            finished = True
+
+    return x, y, target_index, finished
