@@ -101,6 +101,10 @@ def main():
     running = True
     while running:
         running = handle_events()
+
+        if motion == MOTION_CIRCLE:
+            x, y, angle, finished = update_circle(angle)
+
         draw_frame(character, x, y)
         delay(FRAME_DELAY)
 
