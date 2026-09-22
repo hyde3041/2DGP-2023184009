@@ -49,3 +49,12 @@ def move_toward(x, y, target_x, target_y):
     x += (target_x - x) * ratio
     y += (target_y - y) * ratio
     return x, y, False
+
+
+def handle_events():
+    for event in get_events():
+        if event.type == SDL_QUIT:
+            return False
+        if event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            return False
+    return True
