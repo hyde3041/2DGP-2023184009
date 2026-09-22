@@ -126,3 +126,7 @@ def main():
         delay(FRAME_DELAY)
 
     close_canvas()
+
+
+if __name__ == '__main__':
+    main()
