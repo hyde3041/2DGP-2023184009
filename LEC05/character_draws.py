@@ -34,3 +34,7 @@ TRIANGLE_POINTS = (
     (400, 450),
     (250, 150),
 )
+
+
+def distance_between(x, y, target_x, target_y):
+    return math.hypot(target_x - x, target_y - y)
