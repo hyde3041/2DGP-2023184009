@@ -91,3 +91,8 @@ def update_path(x, y, points, target_index):
 def create_initial_state():
     x, y = SQUARE_POINTS[0]
     return x, y, MOTION_CIRCLE, CIRCLE_START_ANGLE, 1
+
+
+def main():
+    open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    close_canvas()
