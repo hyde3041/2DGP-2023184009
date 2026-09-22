@@ -118,6 +118,9 @@ def main():
             x, y, target_index, finished = update_path(
                 x, y, TRIANGLE_POINTS, target_index
             )
+            if finished:
+                motion = MOTION_CIRCLE
+                angle = CIRCLE_START_ANGLE
 
         draw_frame(character, x, y)
         delay(FRAME_DELAY)
