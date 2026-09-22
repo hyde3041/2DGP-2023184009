@@ -114,6 +114,10 @@ def main():
             if finished:
                 motion = MOTION_TRIANGLE
                 target_index = 1
+        elif motion == MOTION_TRIANGLE:
+            x, y, target_index, finished = update_path(
+                x, y, TRIANGLE_POINTS, target_index
+            )
 
         draw_frame(character, x, y)
         delay(FRAME_DELAY)
