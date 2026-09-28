@@ -39,3 +39,10 @@ def draw_circle(character, grass):
         x = CIRCLE_CENTER_X + CIRCLE_RADIUS * math.cos(theta)
         y = CIRCLE_CENTER_Y + CIRCLE_RADIUS * math.sin(theta)
         draw_character(character, grass, x, y)
+
+
+def move_top(character, grass):
+    print('TOP')
+
+    for x in range(RECTANGLE_LEFT, RECTANGLE_RIGHT + 1, MOVE_STEP):
+        draw_character(character, grass, x, RECTANGLE_TOP)
