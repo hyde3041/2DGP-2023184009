@@ -90,3 +90,12 @@ def move_triangle_right(character, grass):
         ratio = (x - start_x) / (end_x - start_x)
         y = interpolate(start_y, end_y, ratio)
         draw_character(character, grass, x, y)
+
+
+def move_triangle_bottom(character, grass):
+    print('TRIANGLE BOTTOM')
+    start_x, start_y = TRIANGLE_RIGHT
+    end_x, _ = TRIANGLE_LEFT
+
+    for x in range(start_x, end_x - 1, -MOVE_STEP):
+        draw_character(character, grass, x, start_y)
