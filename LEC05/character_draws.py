@@ -34,7 +34,7 @@ def draw_character(character, grass, x, y):
 def draw_circle(character, grass):
     print('CIRCLE')
 
-    for degree in range(0, 360, MOVE_STEP):
+    for degree in range(0, 361, MOVE_STEP):
         theta = math.radians(degree)
         x = CIRCLE_CENTER_X + CIRCLE_RADIUS * math.cos(theta)
         y = CIRCLE_CENTER_Y + CIRCLE_RADIUS * math.sin(theta)
