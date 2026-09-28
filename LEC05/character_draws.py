@@ -126,5 +126,6 @@ def main():
 
     while True:
         draw_circle(character, grass)
+        draw_rectangle(character, grass)
 
     close_canvas()
