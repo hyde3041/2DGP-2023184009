@@ -117,3 +117,8 @@ def draw_triangle(character, grass):
     move_triangle_right(character, grass)
     move_triangle_bottom(character, grass)
     move_triangle_left(character, grass)
+
+
+def main():
+    open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    close_canvas()
