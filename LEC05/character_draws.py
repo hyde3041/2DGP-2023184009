@@ -122,4 +122,5 @@ def draw_triangle(character, grass):
 def main():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     grass = load_image('grass.png')
+    character = load_image('character.png')
     close_canvas()
