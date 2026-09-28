@@ -29,3 +29,13 @@ def draw_character(character, grass, x, y):
     character.draw(x, y)
     update_canvas()
     delay(FRAME_DELAY)
+
+
+def draw_circle(character, grass):
+    print('CIRCLE')
+
+    for degree in range(0, 360, MOVE_STEP):
+        theta = math.radians(degree)
+        x = CIRCLE_CENTER_X + CIRCLE_RADIUS * math.cos(theta)
+        y = CIRCLE_CENTER_Y + CIRCLE_RADIUS * math.sin(theta)
+        draw_character(character, grass, x, y)
