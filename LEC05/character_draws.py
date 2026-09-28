@@ -46,3 +46,10 @@ def move_top(character, grass):
 
     for x in range(RECTANGLE_LEFT, RECTANGLE_RIGHT + 1, MOVE_STEP):
         draw_character(character, grass, x, RECTANGLE_TOP)
+
+
+def move_right(character, grass):
+    print('RIGHT')
+
+    for y in range(RECTANGLE_TOP, RECTANGLE_BOTTOM - 1, -MOVE_STEP):
+        draw_character(character, grass, RECTANGLE_RIGHT, y)
