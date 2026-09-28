@@ -123,4 +123,8 @@ def main():
     open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     grass = load_image('grass.png')
     character = load_image('character.png')
+
+    while True:
+        draw_circle(character, grass)
+
     close_canvas()
