@@ -75,3 +75,7 @@ def draw_rectangle(character, grass):
     move_right(character, grass)
     move_bottom(character, grass)
     move_left(character, grass)
+
+
+def interpolate(start, end, ratio):
+    return start + (end - start) * ratio
