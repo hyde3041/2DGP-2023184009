@@ -60,3 +60,10 @@ def move_bottom(character, grass):
 
     for x in range(RECTANGLE_RIGHT, RECTANGLE_LEFT - 1, -MOVE_STEP):
         draw_character(character, grass, x, RECTANGLE_BOTTOM)
+
+
+def move_left(character, grass):
+    print('LEFT')
+
+    for y in range(RECTANGLE_BOTTOM, RECTANGLE_TOP + 1, MOVE_STEP):
+        draw_character(character, grass, RECTANGLE_LEFT, y)
