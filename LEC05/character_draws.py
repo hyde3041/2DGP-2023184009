@@ -130,3 +130,7 @@ def main():
         draw_triangle(character, grass)
 
     close_canvas()
+
+
+if __name__ == '__main__':
+    main()
