@@ -79,3 +79,14 @@ def draw_rectangle(character, grass):
 
 def interpolate(start, end, ratio):
     return start + (end - start) * ratio
+
+
+def move_triangle_right(character, grass):
+    print('TRIANGLE RIGHT')
+    start_x, start_y = TRIANGLE_TOP
+    end_x, end_y = TRIANGLE_RIGHT
+
+    for x in range(start_x, end_x + 1, MOVE_STEP):
+        ratio = (x - start_x) / (end_x - start_x)
+        y = interpolate(start_y, end_y, ratio)
+        draw_character(character, grass, x, y)
