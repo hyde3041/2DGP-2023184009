@@ -21,3 +21,9 @@ RECTANGLE_TOP = 550
 TRIANGLE_TOP = (400, 550)
 TRIANGLE_RIGHT = (700, 50)
 TRIANGLE_LEFT = (100, 50)
+
+
+def draw_character(character, x, y):
+    clear_canvas()
+    character.draw(x, y)
+    update_canvas()
