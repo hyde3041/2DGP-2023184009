@@ -67,3 +67,11 @@ def move_left(character, grass):
 
     for y in range(RECTANGLE_BOTTOM, RECTANGLE_TOP + 1, MOVE_STEP):
         draw_character(character, grass, RECTANGLE_LEFT, y)
+
+
+def draw_rectangle(character, grass):
+    print('RECTANGLE')
+    move_top(character, grass)
+    move_right(character, grass)
+    move_bottom(character, grass)
+    move_left(character, grass)
