@@ -23,7 +23,8 @@ TRIANGLE_RIGHT = (700, 50)
 TRIANGLE_LEFT = (100, 50)
 
 
-def draw_character(character, x, y):
+def draw_character(character, grass, x, y):
     clear_canvas()
+    grass.draw(400, 30)
     character.draw(x, y)
     update_canvas()
