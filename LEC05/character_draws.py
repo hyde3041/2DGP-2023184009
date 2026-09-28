@@ -28,3 +28,4 @@ def draw_character(character, grass, x, y):
     grass.draw(400, 30)
     character.draw(x, y)
     update_canvas()
+    delay(FRAME_DELAY)
