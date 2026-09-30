@@ -28,10 +28,13 @@ while running:
     frames = animations[state_name]
     x, y, w, h = frames[current_frame_idx]
     
-    # 화면 중앙 400, 300, 300x300 크기로 확대
     character.clip_draw(x, y, w, h, 400, 300, 300, 300)
-    
     update_canvas()
+    
+    current_frame_idx += 1
+    if current_frame_idx >= len(frames):
+        current_frame_idx = 0
+        
     delay(0.05)
 
 close_canvas()
