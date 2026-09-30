@@ -13,6 +13,7 @@ animations = {
 anim_sequence = ['Walk', 'Run', 'Jump', 'Attack']
 current_anim_idx = 0
 current_frame_idx = 0
+loop_count = 0
 
 running = True
 while running:
@@ -34,6 +35,7 @@ while running:
     current_frame_idx += 1
     if current_frame_idx >= len(frames):
         current_frame_idx = 0
+        loop_count += 1
         
     delay(0.05)
 
