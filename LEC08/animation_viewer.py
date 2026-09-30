@@ -67,3 +67,30 @@ def load_animations(path=ASSET_DIR / 'knight_frames.json'):
     if not animations:
         raise ValueError('애니메이션 목록이 비어 있습니다.')
     return tuple(animations), data['sheets']
+
+
+class AnimationPlayer:
+    def __init__(self, animations):
+        self.animations = animations
+        self.animation_index = 0
+        self.frame_index = 0
+        self.completed_loops = 0
+        self.paused = False
+        self.remaining = 1 / self.animation.fps
+
+    @property
+    def animation(self):
+        return self.animations[self.animation_index]
+
+    @property
+    def frame(self):
+        return self.animation.frames[self.frame_index]
+
+    def advance(self, elapsed):
+        if not math.isfinite(elapsed) or elapsed < 0:
+            raise ValueError('경과 시간은 0 이상의 유한한 값이어야 합니다.')
+        while elapsed + 1e-9 >= self.remaining:
+            elapsed = max(0.0, elapsed - self.remaining)
+            self.frame_index = (self.frame_index + 1) % len(self.animation.frames)
+            self.remaining = 1 / self.animation.fps
+        self.remaining -= elapsed
