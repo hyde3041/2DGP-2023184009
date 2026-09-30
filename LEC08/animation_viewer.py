@@ -89,10 +89,25 @@ class AnimationPlayer:
     def advance(self, elapsed):
         if not math.isfinite(elapsed) or elapsed < 0:
             raise ValueError('경과 시간은 0 이상의 유한한 값이어야 합니다.')
+        # 렌더링이 늦어져도 경과시간을 버리지 않는다.
         while elapsed + 1e-9 >= self.remaining:
             elapsed = max(0.0, elapsed - self.remaining)
-            self.frame_index = (self.frame_index + 1) % len(self.animation.frames)
-            if self.frame_index == 0:
-                self.completed_loops += 1
-            self.remaining = 1 / self.animation.fps
+            self._next_frame()
         self.remaining -= elapsed
+
+    def _next_frame(self):
+        if self.paused:
+            self.animation_index = (self.animation_index + 1) % len(self.animations)
+            self.frame_index = 0
+            self.completed_loops = 0
+            self.paused = False
+        elif self.frame_index == len(self.animation.frames) - 1:
+            self.completed_loops += 1
+            if self.completed_loops == REPEAT_COUNT:
+                self.paused = True
+                self.remaining = PAUSE_SECONDS
+                return  # 5회 반복 후 마지막 프레임을 1초 유지한다.
+            self.frame_index = 0
+        else:
+            self.frame_index += 1
+        self.remaining = 1 / self.animation.fps
