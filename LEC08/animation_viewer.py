@@ -3,17 +3,16 @@ from pico2d import *
 # 800x600 캔버스 열기
 open_canvas(800, 600)
 
-# 애니메이션 스프라이트 시트 로드
-# 주의: 사용하실 스프라이트 시트 이미지로 파일명을 수정하세요.
-character = load_image('../Labs/LEC08_Animation/animation_sheet.png')
+# AI를 이용해 생성한 기사(Knight) 스프라이트 시트 로드
+character = load_image('knight_sprite.jpg')
 
 # 애니메이션 프레임 크기 및 갯수가 다르도록 구현 (+2, +2 보너스 요건)
-# 각 튜플은 (x, y, width, height)를 나타냅니다.
+# 1024x1024 이미지 기준, Pico2D는 좌하단이 (0,0)입니다.
 animations = {
-    'Walk': [(0, 0, 50, 50), (50, 0, 50, 50), (100, 0, 50, 50), (150, 0, 50, 50)],
-    'Run': [(0, 50, 60, 50), (60, 50, 60, 50), (120, 50, 60, 50), (180, 50, 60, 50), (240, 50, 60, 50)],
-    'Jump': [(0, 100, 55, 60), (55, 100, 55, 60), (110, 100, 55, 60)],
-    'Attack': [(0, 150, 70, 70), (70, 150, 70, 70), (140, 150, 70, 70), (210, 150, 70, 70)]
+    'Walk': [(i * 128, 768, 128, 256) for i in range(8)],
+    'Run': [(i * 128, 512, 128, 256) for i in range(8)],
+    'Jump': [(i * 170, 256, 170, 256) for i in range(6)],
+    'Attack': [(i * 170, 0, 170, 256) for i in range(6)]
 }
 
 anim_sequence = ['Walk', 'Run', 'Jump', 'Attack']
