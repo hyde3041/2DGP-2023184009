@@ -138,16 +138,36 @@ def draw_frame(images, player):
                     *frame.draw_rect(animation.scale))
 
 
+def draw_status(font, player):
+    if font is None:
+        return
+    animation = player.animation
+    font.draw(20, 575, 'DRILL 08 / ANIMATION', (45, 53, 65))
+    font.draw(20, 547, animation.label, (34, 93, 142))
+    if player.paused:
+        status = f'5/5 완료 · {player.remaining:.1f}초 정지'
+    else:
+        status = f'{player.completed_loops + 1}/5회 · {animation.fps:g} FPS'
+    font.draw(20, 520, status, (75, 84, 95))
+    font.draw(20, 493, f'프레임 {player.frame_index + 1}/{len(animation.frames)}',
+              (75, 84, 95))
+    font.draw(20, 24, 'ESC: 종료', (75, 84, 95))
+
+
 def main():
     animations, sizes = load_animations()
     player = AnimationPlayer(animations)
     pico2d.open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
     images = {}
+    font = None
     try:
         pico2d.hide_lattice()
         for name in sizes:
             images[name] = pico2d.load_image(str(ASSET_DIR / name))
         validate_images(images, sizes)
+        font_path = Path(pico2d.__file__).resolve().parent / 'data' / 'ConsolaMalgun.ttf'
+        if font_path.exists():
+            font = pico2d.load_font(str(font_path), 18)
         previous = time.perf_counter()
         while True:
             if should_quit(pico2d.get_events()):
@@ -156,9 +176,11 @@ def main():
             player.advance(now - previous)
             previous = now
             draw_frame(images, player)
+            draw_status(font, player)
             pico2d.update_canvas()
             pico2d.delay(max(0.0, 1 / 60 - (time.perf_counter() - now)))
     finally:
+        font = None
         images.clear()
         pico2d.close_canvas()
 
