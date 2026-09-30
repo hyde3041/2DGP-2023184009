@@ -36,6 +36,10 @@ while running:
     if current_frame_idx >= len(frames):
         current_frame_idx = 0
         loop_count += 1
+        if loop_count >= 5:
+            loop_count = 0
+            current_anim_idx = (current_anim_idx + 1) % len(anim_sequence)
+            current_frame_idx = 0
         
     delay(0.05)
 
