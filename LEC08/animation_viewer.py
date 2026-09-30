@@ -111,3 +111,28 @@ class AnimationPlayer:
         else:
             self.frame_index += 1
         self.remaining = 1 / self.animation.fps
+
+
+def validate_images(images, sizes):
+    for name, expected in sizes.items():
+        if (images[name].w, images[name].h) != tuple(expected):
+            raise ValueError(f'스프라이트 크기가 메타데이터와 다릅니다: {name}')
+
+
+def main():
+    animations, sizes = load_animations()
+    player = AnimationPlayer(animations)
+    pico2d.open_canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    images = {}
+    try:
+        pico2d.hide_lattice()
+        for name in sizes:
+            images[name] = pico2d.load_image(str(ASSET_DIR / name))
+        validate_images(images, sizes)
+    finally:
+        images.clear()
+        pico2d.close_canvas()
+
+
+if __name__ == '__main__':
+    main()
