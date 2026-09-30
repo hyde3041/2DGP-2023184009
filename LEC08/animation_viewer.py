@@ -43,3 +43,27 @@ class Animation:
     fps: float
     scale: float
     frames: tuple[Frame, ...]
+
+
+def load_animations(path=ASSET_DIR / 'knight_frames.json'):
+    data = json.loads(Path(path).read_text(encoding='utf-8'))
+    animations = []
+    for entry in data['animations']:
+        width, height = data['sheets'][entry['sheet']]
+        frames = tuple(Frame(*item['rect'], *item['pivot']) for item in entry['frames'])
+        if not frames or not math.isfinite(entry['fps']) or entry['fps'] <= 0:
+            raise ValueError(f"프레임 또는 FPS 오류: {entry['name']}")
+        if not math.isfinite(entry['scale']) or entry['scale'] <= 0:
+            raise ValueError(f"확대 배율 오류: {entry['name']}")
+        for frame in frames:
+            if not (frame.width > 0 and frame.height > 0 and frame.x >= 0
+                    and frame.top >= 0 and frame.x + frame.width <= width
+                    and frame.top + frame.height <= height):
+                raise ValueError(f"시트 영역을 벗어난 프레임: {entry['name']}")
+        animations.append(Animation(
+            entry['name'], entry['label'], entry['sheet'],
+            entry['fps'], entry['scale'], frames,
+        ))
+    if not animations:
+        raise ValueError('애니메이션 목록이 비어 있습니다.')
+    return tuple(animations), data['sheets']
