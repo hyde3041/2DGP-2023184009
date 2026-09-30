@@ -10,6 +10,10 @@ animations = {
     'Attack': [(0, 150, 70, 70), (70, 150, 70, 70), (140, 150, 70, 70), (210, 150, 70, 70)]
 }
 
+anim_sequence = ['Walk', 'Run', 'Jump', 'Attack']
+current_anim_idx = 0
+current_frame_idx = 0
+
 running = True
 while running:
     clear_canvas()
