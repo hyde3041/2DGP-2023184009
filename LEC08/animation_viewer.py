@@ -92,5 +92,7 @@ class AnimationPlayer:
         while elapsed + 1e-9 >= self.remaining:
             elapsed = max(0.0, elapsed - self.remaining)
             self.frame_index = (self.frame_index + 1) % len(self.animation.frames)
+            if self.frame_index == 0:
+                self.completed_loops += 1
             self.remaining = 1 / self.animation.fps
         self.remaining -= elapsed
