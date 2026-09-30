@@ -21,8 +21,13 @@ while running:
     for event in events:
         if event.type == SDL_QUIT:
             running = False
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+        elif event.type == SDLK_ESCAPE:
             running = False
+            
+    state_name = anim_sequence[current_anim_idx]
+    frames = animations[state_name]
+    x, y, w, h = frames[current_frame_idx]
+    
     update_canvas()
     delay(0.05)
 
