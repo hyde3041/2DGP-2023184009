@@ -119,6 +119,17 @@ def validate_images(images, sizes):
             raise ValueError(f'스프라이트 크기가 메타데이터와 다릅니다: {name}')
 
 
+def draw_frame(images, player):
+    animation = player.animation
+    frame = player.frame
+    image = images[animation.sheet]
+    pico2d.clear_canvas()
+    pico2d.draw_rectangle(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT,
+                          255, 255, 255, filled=True)
+    image.clip_draw(*frame.source_rect(image.h),
+                    *frame.draw_rect(animation.scale))
+
+
 def main():
     animations, sizes = load_animations()
     player = AnimationPlayer(animations)
@@ -129,6 +140,9 @@ def main():
         for name in sizes:
             images[name] = pico2d.load_image(str(ASSET_DIR / name))
         validate_images(images, sizes)
+        draw_frame(images, player)
+        pico2d.update_canvas()
+        pico2d.delay(1.0)
     finally:
         images.clear()
         pico2d.close_canvas()
