@@ -119,6 +119,14 @@ def validate_images(images, sizes):
             raise ValueError(f'스프라이트 크기가 메타데이터와 다릅니다: {name}')
 
 
+def should_quit(events):
+    return any(
+        event.type == pico2d.SDL_QUIT
+        or (event.type == pico2d.SDL_KEYDOWN and event.key == pico2d.SDLK_ESCAPE)
+        for event in events
+    )
+
+
 def draw_frame(images, player):
     animation = player.animation
     frame = player.frame
@@ -140,9 +148,16 @@ def main():
         for name in sizes:
             images[name] = pico2d.load_image(str(ASSET_DIR / name))
         validate_images(images, sizes)
-        draw_frame(images, player)
-        pico2d.update_canvas()
-        pico2d.delay(1.0)
+        previous = time.perf_counter()
+        while True:
+            if should_quit(pico2d.get_events()):
+                break
+            now = time.perf_counter()
+            player.advance(now - previous)
+            previous = now
+            draw_frame(images, player)
+            pico2d.update_canvas()
+            pico2d.delay(max(0.0, 1 / 60 - (time.perf_counter() - now)))
     finally:
         images.clear()
         pico2d.close_canvas()
