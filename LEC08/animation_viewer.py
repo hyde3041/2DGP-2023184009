@@ -33,3 +33,13 @@ class Frame:
         x = CANVAS_WIDTH / 2 + (self.x + self.width / 2 - self.pivot_x) * scale
         y = CANVAS_HEIGHT / 2 - (self.top + self.height / 2 - self.pivot_y) * scale
         return x, y, self.width * scale, self.height * scale
+
+
+@dataclass(frozen=True)
+class Animation:
+    name: str
+    label: str
+    sheet: str
+    fps: float
+    scale: float
+    frames: tuple[Frame, ...]
