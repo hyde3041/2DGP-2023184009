@@ -12,5 +12,6 @@ while running:
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
     update_canvas()
+    delay(0.05)
 
 close_canvas()
