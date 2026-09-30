@@ -3,7 +3,9 @@ from pico2d import *
 open_canvas(800, 600)
 character = load_image('../Labs/LEC08_Animation/animation_sheet.png')
 
-animations = {}
+animations = {
+    'Walk': [(0, 0, 50, 50), (50, 0, 50, 50), (100, 0, 50, 50), (150, 0, 50, 50)]
+}
 
 running = True
 while running:
