@@ -1,0 +1,11 @@
+Generated using the built-in image_gen tool.
+
+Use case: stylized-concept.
+Asset type: a production-ready PNG sprite sheet named zombie_animation.png for a pico2d side-view 2D game.
+Primary request: draw one original cartoon zombie in eight consecutive frames of a looping shambling walk/run animation, facing RIGHT in every frame.
+Subject: a small green-skinned zombie with expressive eyes, short messy hair, a torn muted shirt, dark trousers and simple shoes, readable rounded game-sprite silhouette. Friendly spooky, no gore. Same character and clothing in every frame.
+Style: hand-drawn retro 2D game sprite with crisp outlines and flat colors, legible when each frame is displayed at 100 by 100 pixels.
+Exact output layout: PNG canvas 800 pixels wide by 100 pixels high, a SINGLE horizontal row of EXACTLY EIGHT equal 100x100 cells. No other rows. Place one complete full-body pose per cell. Cell centers are x=50,150,250,350,450,550,650,750. Each pose stays completely inside its own cell, with roughly 8px padding above and below and 12px horizontal padding. Feet share the same baseline near y=90. Character scale, pivot and proportions stay consistent across all eight cells. The eight poses must be different successive phases of a smooth looping gait: alternate planted and lifted feet, with slight body bob and loosely swinging forward-reaching arms.
+Background: genuinely transparent alpha throughout, including all empty space between poses. No painted checkerboard, no backdrop, no ground plane, no cast shadows.
+Constraints: strictly one row of eight frames, no additional characters, no labels, no borders or grid lines, no text, no logo, no watermark. IMPORTANT: deliver a tightly cropped 800x100 sprite strip so existing code can use clip_draw(frame * 100, 0, 100, 100, x, y) with frame modulo eight.
+
