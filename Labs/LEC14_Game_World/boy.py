@@ -5,6 +5,9 @@ from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
                   SDLK_SPACE)
 from transitions import Machine
 
+import game_world
+from ball import Ball
+
 
 class Boy:
     def __init__(self):
@@ -28,6 +31,9 @@ class Boy:
                  'source': ['IDLE', 'SLEEP'], 'dest': 'RUN'},
                 {'trigger': 'stop_run',
                  'source': 'RUN', 'dest': 'IDLE'},
+                {'trigger': 'fire_ball',
+                 'source': ['IDLE', 'RUN'], 'dest': None,
+                 'after': 'print_fire_ball'},
             ],
             initial='IDLE',
             auto_transitions=False,
@@ -43,11 +49,18 @@ class Boy:
     def on_enter_RUN(self):
         self.frame = 0
 
+    def print_fire_ball(self):
+        direction_name = '오른쪽' if self.face_dir == 1 else '왼쪽'
+        print(f'볼 발사 방향: {direction_name} (FIRE BALL)')
+        ball = Ball(self.x, self.y, self.face_dir)
+        game_world.add_object(ball)
+
     def handle_event(self, event):
-        if (event.type == SDL_KEYDOWN and
-                event.key == SDLK_SPACE and
-                self.state == 'SLEEP'):
-            self.wake_up()
+        if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
+            if self.state == 'SLEEP':
+                self.wake_up()
+            elif self.state in ('IDLE', 'RUN'):
+                self.fire_ball()
             return
 
         if (event.type not in (SDL_KEYDOWN, SDL_KEYUP) or
