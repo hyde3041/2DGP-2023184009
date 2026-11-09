@@ -1,11 +1,20 @@
 {
     "version": "0.2.0",
     "configurations": [
-    
+        {
+            "name": "LEC15: main.py",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "C:/2023184009/.venv/Scripts/python.exe",
+            "program": "${workspaceFolder}/Labs/LEC15_Game_Framework/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/Labs/LEC15_Game_Framework"
+        },
         {
             "name": "Python: Current File",
             "type": "debugpy",
             "request": "launch",
+            "python": "C:/2023184009/.venv/Scripts/python.exe",
             "program": "${file}",
             "console": "integratedTerminal",
             "cwd": "${fileDirname}"
