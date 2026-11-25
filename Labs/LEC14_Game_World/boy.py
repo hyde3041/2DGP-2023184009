@@ -11,7 +11,7 @@ from ball import Ball
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 400, 30
+        self.x, self.y = 400, 90
         self.frame = 0
         self.image = load_image('animation_sheet.png')
         self.idle_started_at = get_time()
@@ -52,8 +52,9 @@ class Boy:
     def print_fire_ball(self):
         direction_name = '오른쪽' if self.face_dir == 1 else '왼쪽'
         print(f'볼 발사 방향: {direction_name} (FIRE BALL)')
-        ball = Ball(self.x, self.y, self.face_dir)
+        ball = Ball(self.x + self.face_dir * 40, self.y, self.face_dir)
         game_world.add_object(ball, 1)
+        game_world.add_collision_pairs('ball:zombie', ball, None)
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:

@@ -1,6 +1,7 @@
 from pico2d import *
 from boy import Boy
 from grass import Grass
+from zombie import Zombie
 
 import game_world
 
@@ -30,12 +31,15 @@ def reset_world():
     grass = Grass()
     game_world.add_object(grass, 0)
 
-   
+    zombie = Zombie()
+    game_world.add_object(zombie, 1)
+    game_world.add_collision_pairs('ball:zombie', None, zombie)
 
 
 
 def update_world():
     game_world.update()
+    game_world.handle_collision()
 
 
 def render_world():
